@@ -6,6 +6,7 @@
         "php": ">=5.6.0"
     },
     "license": "MIT",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "leolei",
