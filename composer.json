@@ -13,5 +13,13 @@
             "name": "leolei",
             "email": "346991581@qq.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "leolei\\Alisms\\": "src"
+        },
+        "files": [
+            "src/helper.php"
+        ]
+    }
 }
