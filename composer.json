@@ -1,9 +1,8 @@
 {
     "name": "leolei/alisms",
-    "description": "alidayu sms library for php",
     "type": "library",
+    "description": "alidayu sms library for php",
     "license": "MIT",
-    "version": "1.0.0",
     "authors": [
         {
             "name": "leolei",
