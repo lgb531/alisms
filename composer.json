@@ -1,0 +1,24 @@
+{
+    "name": "leolei/alisms",
+    "description": "alidayu sms library for php",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "leolei",
+            "email": "346991581@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "leolei\\Alisms\\": "src"
+        },
+        "files": [
+            "src/helper.php"
+        ]
+    }
+}
