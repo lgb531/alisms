@@ -1,6 +1,7 @@
 {
     "name": "leolei/alisms",
     "description": "a sms library for thinkphp5",
+    "minimum-stability": "stable",
     "type": "library",
     "require": {
         "php": ">=5.6.0"
