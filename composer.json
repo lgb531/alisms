@@ -1,23 +1,15 @@
 {
     "name": "leolei/alisms",
+    "description": "a sms library for thinkphp5",
     "type": "library",
-    "description": "alidayu sms library for php",
+    "require": {
+        "php": ">=5.6.0"
+    },
     "license": "MIT",
     "authors": [
         {
             "name": "leolei",
             "email": "346991581@qq.com"
         }
-    ],
-    "require": {
-        "php": ">=5.6.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "leolei\\Alisms\\": "src"
-        },
-        "files": [
-            "src/helper.php"
-        ]
-    }
+    ]
 }
