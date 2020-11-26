@@ -1,53 +1,63 @@
 <?php
 
-/**
- * 阿里大于短信发送类
- */
-
 namespace leolei\Alisms;
 
 use leolei\Alisms\Util\Sign;
 use leolei\Alisms\Util\Http;
 
+/**
+ * 阿里大于短信发送类
+ * Class SmsGateWay
+ * @package leolei\Alisms
+ * @author Leo.lei <346991581@qq.com>
+ */
 class SmsGateWay
 {
     const GATEWAY = 'https://eco.taobao.com/router/rest';//https方式 也可用http方式
 
     private $params;
 
+    /**
+     * SmsGateWay constructor.
+     */
     public function __construct()
     {
         $this->params = [
-            'app_key'            => config('alidayu.app_key'),
-            'timestamp'          => date("Y-m-d H:i:s", NOW_TIME),
-            'format'             => 'json',
-            'v'                  => '2.0',
-            'sign_method'        => 'md5',
+            'app_key' => config('alidayu.app_key'),
+            'timestamp' => date("Y-m-d H:i:s", NOW_TIME),
+            'format' => 'json',
+            'v' => '2.0',
+            'sign_method' => 'md5',
             'sms_free_sign_name' => config('alidayu.signature')
         ];
     }
 
+    /**
+     * 发送短信
+     * @param $mobile
+     * @param $data
+     * @param $template
+     * @return array|void
+     */
     public function send($mobile, $data, $template)
     {
-        $params                      = [];
-        $params['method']            = 'alibaba.aliqin.fc.sms.num.send';
-        $params['sms_type']          = 'normal';
-        $params['sms_param']         = json_encode($data);
-        $params['rec_num']           = $mobile;
+        $params = [];
+        $params['method'] = 'alibaba.aliqin.fc.sms.num.send';
+        $params['sms_type'] = 'normal';
+        $params['sms_param'] = json_encode($data);
+        $params['rec_num'] = $mobile;
         $params['sms_template_code'] = $template;
-        $params                      = array_merge($this->params, $params);
-        $params['sign']              = Sign::create($params);
-        $rsp                         = Http::post(self::GATEWAY, $params);
-        $rsp                         = json_decode($rsp, true);
+        $params = array_merge($this->params, $params);
+        $params['sign'] = Sign::create($params);
+        $rsp = Http::post(self::GATEWAY, $params);
+        $rsp = json_decode($rsp, true);
         return self::check_error($rsp);
     }
 
     /**
      * 错误码匹配
-     *
-     * @param array $rsp
-     * @return void
-     * @author leolei <346991581@qq.com>
+     * @param $rsp
+     * @return array
      */
     protected function check_error($rsp)
     {
@@ -71,9 +81,9 @@ class SmsGateWay
             'isv.AMOUNT_NOT_ENOUGH' => '短信未发送成功，请稍后重试',//余额不足 因余额不足未能发送成功，请登录管理中心充值后重新发送
         ];
         if (isset($rsp['alibaba_aliqin_fc_sms_num_send_response']['result']['success']) && $rsp['alibaba_aliqin_fc_sms_num_send_response']['result']['success'] == 'true') {
-            return ['status' => 1,'info' => '短信发送成功'];
+            return ['status' => 1, 'info' => '短信发送成功'];
         } else {
-            return ['status' => 0,'info' => $errCode[$rsp['error_response']['sub_code']],'code'=>$rsp['error_response']['code']];
+            return ['status' => 0, 'info' => $errCode[$rsp['error_response']['sub_code']], 'code' => $rsp['error_response']['code']];
         }
     }
 }

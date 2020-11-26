@@ -1,25 +1,26 @@
 {
-    "name": "leolei/alisms",
-    "description": "a sms library for thinkphp5",
-    "minimum-stability": "stable",
-    "type": "library",
-    "require": {
-        "php": ">=5.6.0"
-    },
-    "license": "MIT",
-    "version": "1.0.0",
-    "authors": [
-        {
-            "name": "leolei",
-            "email": "346991581@qq.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "leolei\\Alisms\\": "src"
-        },
-        "files": [
-            "src/helper.php"
-        ]
+  "name": "leolei/alisms",
+  "description": "a sms library for thinkphp5",
+  "minimum-stability": "stable",
+  "type": "library",
+  "require": {
+    "php": ">=5.6.0",
+    "ext-json": "*"
+  },
+  "license": "MIT",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "leolei",
+      "email": "346991581@qq.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "leolei\\Alisms\\": "src"
+    },
+    "files": [
+      "src/helper.php"
+    ]
+  }
 }
